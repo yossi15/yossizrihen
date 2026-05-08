@@ -15,24 +15,15 @@ const fadeUp: Variants = {
   }),
 };
 
-const BG_PHOTO = "/sea-bg.jpg";
+const HERO_PHOTO = "/hero-chuppah.jpg";
 
 export default function Invitation() {
   return (
     <main className="relative min-h-[100dvh] sunset-bg overflow-hidden">
-      {/* Optional real-photo overlay for the whole page */}
-      <div
-        className="fixed inset-0 bg-cover bg-center pointer-events-none opacity-90"
-        style={{ backgroundImage: `url(${BG_PHOTO})` }}
-        aria-hidden
-      />
-      {/* Dark veil so content stays readable over the photo */}
-      <div className="fixed inset-0 bg-gradient-to-b from-[#1f2a44]/55 via-[#5a4a62]/25 to-[#16313e]/55 pointer-events-none" aria-hidden />
+      {/* Hero photo band at top */}
+      <HeroPhoto src={HERO_PHOTO} />
 
-      {/* SVG hero (used when photo missing or as decorative top band) */}
-      <HeroScene />
-
-      <div className="relative z-10 max-w-md mx-auto px-5 pt-6 pb-16 flex flex-col items-center text-center gap-10">
+      <div className="relative z-10 max-w-md mx-auto px-5 pt-[280px] sm:pt-[380px] pb-16 flex flex-col items-center text-center gap-10">
         {/* Header card */}
         <motion.section
           variants={fadeUp}
@@ -196,6 +187,21 @@ function Waves() {
         strokeLinecap="round"
       />
     </svg>
+  );
+}
+
+function HeroPhoto({ src }: { src: string }) {
+  return (
+    <div className="absolute inset-x-0 top-0 h-[320px] sm:h-[420px] pointer-events-none overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${src})` }}
+        aria-hidden
+      />
+      {/* Top vignette so menu/text reads, plus bottom fade into the gradient body */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1f2a44]/40 via-transparent to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#a86555]" />
+    </div>
   );
 }
 

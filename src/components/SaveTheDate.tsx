@@ -48,13 +48,16 @@ export default function SaveTheDate({ onContinue }: Props) {
         {/* SVG fallback first; real photo (if file present) painted on top */}
         <BeachScene className="absolute inset-0 w-full h-full" />
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_PHOTO})` }}
+          className="absolute inset-0 w-full h-full bg-cover"
+          style={{
+            backgroundImage: `url(${HERO_PHOTO})`,
+            backgroundPosition: "center 40%",
+          }}
           aria-hidden
         />
 
-        {/* Subtle vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/35" />
+        {/* Stronger bottom vignette so the names/date sit on a darker base */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/5 to-black/65" />
 
         {/* Top label */}
         <motion.p
