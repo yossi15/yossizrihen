@@ -38,7 +38,27 @@ export default function Invitation({ guest }: { guest?: GuestContext } = {}) {
           custom={0.1}
           className="glass rounded-sm w-full px-7 py-9 flex flex-col items-center gap-3 shadow-[0_25px_60px_-25px_rgba(22,49,62,0.55)]"
         >
-          <p className="text-[10px] tracking-[0.5em] text-[var(--gold-deep)] uppercase">
+          <p className="font-serif italic text-base sm:text-lg text-[var(--ink-soft)] leading-relaxed">
+            “{eventConfig.quote}”
+          </p>
+          <p className="text-xs text-[var(--ink-soft)]/70 -mt-1">תהילים פ&quot;ט</p>
+
+          <div className="w-24 h-px gold-divider mt-4" />
+
+          <div className="grid grid-cols-2 gap-6 w-full mt-3 text-sm">
+            <ParentBlock
+              label={eventConfig.groomParents.label}
+              names={eventConfig.groomParents.names}
+            />
+            <ParentBlock
+              label={eventConfig.brideParents.label}
+              names={eventConfig.brideParents.names}
+            />
+          </div>
+
+          <div className="w-24 h-px gold-divider mt-4" />
+
+          <p className="text-[10px] tracking-[0.5em] text-[var(--gold-deep)] uppercase mt-3">
             מתחתנים
           </p>
           <h1 className="font-serif text-5xl sm:text-6xl text-[var(--sea-deep)] leading-tight">
@@ -48,10 +68,6 @@ export default function Invitation({ guest }: { guest?: GuestContext } = {}) {
             </span>
             {eventConfig.brideNameHe}
           </h1>
-          <div className="w-32 h-px gold-divider mt-2" />
-          <p className="font-serif italic text-lg text-[var(--ink-soft)] mt-3 leading-relaxed">
-            “{eventConfig.quote}”
-          </p>
         </motion.section>
 
         <Waves />
@@ -146,6 +162,27 @@ export default function Invitation({ guest }: { guest?: GuestContext } = {}) {
   );
 }
 
+function ParentBlock({
+  label,
+  names,
+}: {
+  label: string;
+  names: string[];
+}) {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <span className="text-[10px] tracking-[0.35em] text-[var(--gold-deep)] uppercase">
+        {label}
+      </span>
+      {names.map((n) => (
+        <span key={n} className="font-serif text-[var(--sea-deep)] leading-tight">
+          {n}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function Detail({
   label,
   value,
@@ -205,8 +242,8 @@ function HeroPhoto({ src }: { src: string }) {
         aria-hidden
       />
       {/* Top vignette so menu/text reads, plus bottom fade into the gradient body */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1f2a44]/40 via-transparent to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#a86555]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2d3a4f]/30 via-transparent to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[#7a6a72]/60 to-[#c2967b]" />
     </div>
   );
 }

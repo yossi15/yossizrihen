@@ -84,17 +84,17 @@ html, body {
 
 .sunset-bg {
   background:
-    radial-gradient(ellipse 70% 35% at 50% 20%, rgba(251,209,151,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 35% at 50% 22%, rgba(244,212,170,0.35) 0%, transparent 60%),
     linear-gradient(
       180deg,
-      #1f2a44 0%,
-      #2d3a52 18%,
-      #5a4a62 32%,
-      #a86555 48%,
-      #d97a48 62%,
-      #e89556 75%,
-      #c4895c 88%,
-      #2a4a5a 100%
+      #2d3a4f 0%,
+      #4a5366 16%,
+      #7a6a72 30%,
+      #c2967b 48%,
+      #d6a98b 62%,
+      #cda186 75%,
+      #8a7d7c 90%,
+      #3e5460 100%
     );
   background-attachment: fixed;
   background-size: 100% 100vh;
@@ -106,8 +106,8 @@ html, body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 15% 80%, rgba(22,49,62,0.25) 0%, transparent 40%),
-    radial-gradient(circle at 85% 90%, rgba(22,49,62,0.3) 0%, transparent 45%);
+    radial-gradient(circle at 15% 80%, rgba(22,49,62,0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(22,49,62,0.2) 0%, transparent 45%);
   z-index: 0;
 }
 
