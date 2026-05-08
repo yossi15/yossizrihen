@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #f8f1e4;
+  --cream-soft: #fbf5ea;
+  --gold: #c9a961;
+  --gold-deep: #a8843a;
+  --gold-light: #e7d4a3;
+  --wax: #b9342c;
+  --wax-deep: #7a1f1a;
+  --ink: #3a3128;
+  --ink-soft: #6b5d4f;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-soft);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-light: var(--gold-light);
+  --color-wax: var(--wax);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+html, body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.gold-divider {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold) 30%,
+    var(--gold-deep) 50%,
+    var(--gold) 70%,
+    transparent 100%
+  );
+}
+
+.gold-text {
+  background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold) 50%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.shimmer {
+  animation: shimmer 2.4s ease-in-out infinite;
+}
