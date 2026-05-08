@@ -7,9 +7,10 @@ import WaxSeal from "./WaxSeal";
 type Props = {
   onOpen: () => void;
   initials?: string;
+  recipient?: string;
 };
 
-export default function Envelope({ onOpen, initials = "Y&R" }: Props) {
+export default function Envelope({ onOpen, initials = "Y&R", recipient }: Props) {
   const [isOpening, setIsOpening] = useState(false);
 
   const handleClick = () => {
@@ -131,15 +132,22 @@ export default function Envelope({ onOpen, initials = "Y&R" }: Props) {
       {/* Subtle instruction */}
       <AnimatePresence>
         {!isOpening && (
-          <motion.p
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[var(--ink-soft)] text-xs tracking-[0.4em] uppercase"
+          <motion.div
+            className="absolute bottom-8 inset-x-0 flex flex-col items-center gap-1"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.7 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ delay: 2, duration: 0.8 }}
           >
-            הוזמנתם
-          </motion.p>
+            {recipient && (
+              <p className="font-serif text-base text-[var(--ink)] italic">
+                עבור {recipient}
+              </p>
+            )}
+            <p className="text-[var(--ink-soft)] text-xs tracking-[0.4em] uppercase opacity-70">
+              הוזמנתם
+            </p>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

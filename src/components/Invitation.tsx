@@ -17,7 +17,13 @@ const fadeUp: Variants = {
 
 const HERO_PHOTO = "/hero-chuppah.jpg";
 
-export default function Invitation() {
+type GuestContext = {
+  token: string;
+  name: string;
+  invitedCount: number;
+};
+
+export default function Invitation({ guest }: { guest?: GuestContext } = {}) {
   return (
     <main className="relative min-h-[100dvh] sunset-bg overflow-hidden">
       {/* Hero photo band at top */}
@@ -123,7 +129,7 @@ export default function Invitation() {
           <p className="text-sm text-[var(--ink-soft)] mb-6">
             נשמח לראותכם — אנא אשרו הגעה
           </p>
-          <RsvpForm />
+          <RsvpForm guest={guest} />
         </motion.section>
 
         <motion.p

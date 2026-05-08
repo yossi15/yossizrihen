@@ -7,9 +7,10 @@ const HERO_PHOTO = "/hero-chuppah.jpg";
 
 type Props = {
   onContinue: () => void;
+  personalGreeting?: string;
 };
 
-export default function SaveTheDate({ onContinue }: Props) {
+export default function SaveTheDate({ onContinue, personalGreeting }: Props) {
   return (
     <div className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-[var(--cream)] px-5 py-10">
       {/* Soft sunset wash at the top */}
@@ -60,14 +61,22 @@ export default function SaveTheDate({ onContinue }: Props) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/5 to-black/65" />
 
         {/* Top label */}
-        <motion.p
-          className="absolute top-6 inset-x-0 text-center text-[10px] tracking-[0.55em] text-white/85 uppercase z-10"
+        <motion.div
+          className="absolute top-6 inset-x-0 text-center z-10 px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          together with their families
-        </motion.p>
+          {personalGreeting ? (
+            <p className="font-serif italic text-white text-base sm:text-lg drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+              {personalGreeting}, הוזמנתם
+            </p>
+          ) : (
+            <p className="text-[10px] tracking-[0.55em] text-white/85 uppercase">
+              together with their families
+            </p>
+          )}
+        </motion.div>
 
         {/* Bottom content */}
         <div className="absolute bottom-0 inset-x-0 p-7 flex flex-col items-center text-center z-10">

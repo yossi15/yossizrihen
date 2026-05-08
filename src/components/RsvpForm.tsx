@@ -5,13 +5,34 @@ import { motion, AnimatePresence } from "framer-motion";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function RsvpForm() {
-  const [name, setName] = useState("");
-  const [guests, setGuests] = useState(1);
+type Guest = {
+  token: string;
+  name: string;
+  invitedCount: number;
+};
+
+const DIETARY_OPTIONS = [
+  { id: "vegan", label: "טבעוני" },
+  { id: "vegetarian", label: "צמחוני" },
+  { id: "gluten_free", label: "ללא גלוטן" },
+  { id: "lactose_free", label: "ללא לקטוז" },
+  { id: "nut_allergy", label: "אלרגיה לאגוזים" },
+] as const;
+
+export default function RsvpForm({ guest }: { guest?: Guest }) {
+  const [name, setName] = useState(guest?.name ?? "");
+  const [guests, setGuests] = useState(guest?.invitedCount ?? 1);
   const [attending, setAttending] = useState<"yes" | "no">("yes");
   const [phone, setPhone] = useState("");
+  const [dietary, setDietary] = useState<string[]>([]);
+  const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+
+  const toggleDietary = (id: string) =>
+    setDietary((curr) =>
+      curr.includes(id) ? curr.filter((x) => x !== id) : [...curr, id],
+    );
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +46,15 @@ export default function RsvpForm() {
       const res = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, guests, attending, phone }),
+        body: JSON.stringify({
+          token: guest?.token,
+          name,
+          guests,
+          attending,
+          phone,
+          dietary: attending === "yes" ? dietary : [],
+          message,
+        }),
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
@@ -47,7 +76,9 @@ export default function RsvpForm() {
             className="text-center py-10 px-6 rounded-md bg-[var(--cream-soft)] border border-[var(--gold)]/40"
           >
             <p className="font-serif text-2xl text-[var(--sea-deep)] mb-2">תודה רבה</p>
-            <p className="text-sm text-[var(--ink-soft)]">אישור ההגעה התקבל. נתראה בשמחות!</p>
+            <p className="text-sm text-[var(--ink-soft)]">
+              אישור ההגעה התקבל. נתראה בשמחות!
+            </p>
           </motion.div>
         ) : (
           <motion.form
@@ -66,6 +97,7 @@ export default function RsvpForm() {
                 className="w-full rounded-md border border-[var(--gold)]/40 bg-[var(--cream-soft)] px-4 py-3 outline-none focus:border-[var(--gold-deep)] focus:ring-1 focus:ring-[var(--gold-deep)]"
                 placeholder="הקלידו את שמכם"
                 autoComplete="name"
+                readOnly={!!guest}
               />
             </Field>
 
@@ -121,6 +153,40 @@ export default function RsvpForm() {
                 />
               </Field>
             </div>
+
+            {attending === "yes" && (
+              <Field label="העדפות תזונה (לא חובה)">
+                <div className="flex flex-wrap gap-2">
+                  {DIETARY_OPTIONS.map((opt) => {
+                    const active = dietary.includes(opt.id);
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        onClick={() => toggleDietary(opt.id)}
+                        className={`px-3 py-1.5 rounded-full text-xs border transition-colors ${
+                          active
+                            ? "bg-[var(--gold-deep)] text-white border-[var(--gold-deep)]"
+                            : "bg-[var(--cream-soft)] text-[var(--ink-soft)] border-[var(--gold)]/40 hover:border-[var(--gold-deep)]"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </Field>
+            )}
+
+            <Field label="הערה / ברכה (לא חובה)">
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={2}
+                className="w-full rounded-md border border-[var(--gold)]/40 bg-[var(--cream-soft)] px-4 py-3 outline-none focus:border-[var(--gold-deep)] focus:ring-1 focus:ring-[var(--gold-deep)] resize-none"
+                placeholder="מחכים לראותכם..."
+              />
+            </Field>
 
             {error && (
               <p className="text-sm text-[var(--wax)] text-center">{error}</p>

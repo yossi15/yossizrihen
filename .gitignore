@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .rsvp-store.json
+data/
+.env.local
+*.db
+*.db-*
