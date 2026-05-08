@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { eventConfig } from "@/lib/event";
 
+const HERO_PHOTO = "/hero-chuppah.jpg";
+
 type Props = {
   onContinue: () => void;
 };
@@ -43,8 +45,13 @@ export default function SaveTheDate({ onContinue }: Props) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
       >
-        {/* Sunset sky + sea illustration as background */}
+        {/* SVG fallback first; real photo (if file present) painted on top */}
         <BeachScene className="absolute inset-0 w-full h-full" />
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${HERO_PHOTO})` }}
+          aria-hidden
+        />
 
         {/* Subtle vignette */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/35" />

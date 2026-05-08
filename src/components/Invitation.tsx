@@ -15,10 +15,21 @@ const fadeUp: Variants = {
   }),
 };
 
+const BG_PHOTO = "/sea-bg.jpg";
+
 export default function Invitation() {
   return (
     <main className="relative min-h-[100dvh] sunset-bg overflow-hidden">
-      {/* Hero scene at top */}
+      {/* Optional real-photo overlay for the whole page */}
+      <div
+        className="fixed inset-0 bg-cover bg-center pointer-events-none opacity-90"
+        style={{ backgroundImage: `url(${BG_PHOTO})` }}
+        aria-hidden
+      />
+      {/* Dark veil so content stays readable over the photo */}
+      <div className="fixed inset-0 bg-gradient-to-b from-[#1f2a44]/55 via-[#5a4a62]/25 to-[#16313e]/55 pointer-events-none" aria-hidden />
+
+      {/* SVG hero (used when photo missing or as decorative top band) */}
       <HeroScene />
 
       <div className="relative z-10 max-w-md mx-auto px-5 pt-6 pb-16 flex flex-col items-center text-center gap-10">
