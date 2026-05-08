@@ -31,11 +31,11 @@ export default function Invitation() {
             מתחתנים
           </p>
           <h1 className="font-serif text-5xl sm:text-6xl gold-text leading-tight">
-            {eventConfig.groomName}
+            {eventConfig.groomNameHe}
             <span className="block italic text-3xl sm:text-4xl my-2 text-[var(--ink-soft)]">
               &amp;
             </span>
-            {eventConfig.brideName}
+            {eventConfig.brideNameHe}
           </h1>
           <div className="w-32 h-px gold-divider mt-2" />
           <p className="font-serif italic text-lg text-[var(--ink-soft)] mt-3 leading-relaxed">
@@ -120,7 +120,7 @@ export default function Invitation() {
           custom={1.2}
           className="text-[10px] tracking-[0.4em] text-[var(--ink-soft)]/70 uppercase mt-4"
         >
-          באהבה · {eventConfig.groomName} ו{eventConfig.brideName}
+          באהבה · {eventConfig.groomNameHe} ו{eventConfig.brideNameHe}
         </motion.p>
       </div>
     </main>

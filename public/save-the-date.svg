@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a3a2a"/>
+      <stop offset="40%" stop-color="#c87a3a"/>
+      <stop offset="65%" stop-color="#f4b35e"/>
+      <stop offset="80%" stop-color="#f8d896"/>
+      <stop offset="100%" stop-color="#3a2a1c"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="55%" r="20%">
+      <stop offset="0%" stop-color="#fff4d2" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#ffd27a" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffd27a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1100" fill="url(#sky)"/>
+  <ellipse cx="400" cy="600" rx="180" ry="90" fill="url(#sun)"/>
+  <rect y="650" width="800" height="450" fill="#1a1410" opacity="0.55"/>
+  <text x="400" y="540" text-anchor="middle" font-family="serif" font-style="italic" font-size="42" fill="rgba(244,227,184,0.45)">replace with your photo</text>
+</svg>
