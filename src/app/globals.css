@@ -13,9 +13,13 @@
   --ink-soft: #4a5a66;
   --sea-deep: #16313e;
   --sea: #2a4a5a;
+  --sea-light: #4a7a8a;
   --sea-mist: #cfd9dc;
   --sunset: #f4a86b;
+  --sunset-deep: #e0823a;
+  --sunset-glow: #fbd197;
   --sand: #e8d6b3;
+  --twilight: #2d3a52;
 }
 
 @theme inline {
@@ -76,4 +80,56 @@ html, body {
 
 .shimmer {
   animation: shimmer 2.4s ease-in-out infinite;
+}
+
+.sunset-bg {
+  background:
+    radial-gradient(ellipse 70% 35% at 50% 20%, rgba(251,209,151,0.5) 0%, transparent 55%),
+    linear-gradient(
+      180deg,
+      #1f2a44 0%,
+      #2d3a52 18%,
+      #5a4a62 32%,
+      #a86555 48%,
+      #d97a48 62%,
+      #e89556 75%,
+      #c4895c 88%,
+      #2a4a5a 100%
+    );
+  background-attachment: fixed;
+  background-size: 100% 100vh;
+}
+
+.sunset-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 80%, rgba(22,49,62,0.25) 0%, transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(22,49,62,0.3) 0%, transparent 45%);
+  z-index: 0;
+}
+
+.glass {
+  background: rgba(251, 245, 234, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(251, 245, 234, 0.55);
+}
+
+.glass-dark {
+  background: rgba(22, 49, 62, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(251, 245, 234, 0.3);
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-20px); }
+}
+
+.wave-anim {
+  animation: wave 6s ease-in-out infinite;
 }

@@ -40,7 +40,7 @@ export default function Countdown({ target }: { target: Date }) {
       {units.map(({ label, value }) => (
         <div
           key={label}
-          className="flex flex-col items-center rounded-md bg-[var(--cream-soft)] border border-[var(--gold)]/30 py-3 px-1 sm:px-2 shadow-sm"
+          className="flex flex-col items-center rounded-md glass py-3 px-1 sm:px-2 shadow-[0_10px_30px_-15px_rgba(22,49,62,0.6)]"
         >
           <span className="font-serif text-2xl sm:text-3xl text-[var(--sea-deep)] tabular-nums leading-none">
             {value !== undefined ? String(value).padStart(2, "0") : "––"}
