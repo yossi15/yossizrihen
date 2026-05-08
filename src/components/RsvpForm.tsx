@@ -46,7 +46,7 @@ export default function RsvpForm() {
             exit={{ opacity: 0 }}
             className="text-center py-10 px-6 rounded-md bg-[var(--cream-soft)] border border-[var(--gold)]/40"
           >
-            <p className="font-serif text-2xl gold-text mb-2">תודה רבה</p>
+            <p className="font-serif text-2xl text-[var(--sea-deep)] mb-2">תודה רבה</p>
             <p className="text-sm text-[var(--ink-soft)]">אישור ההגעה התקבל. נתראה בשמחות!</p>
           </motion.div>
         ) : (

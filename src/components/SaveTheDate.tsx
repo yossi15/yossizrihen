@@ -9,142 +9,133 @@ type Props = {
 
 export default function SaveTheDate({ onContinue }: Props) {
   return (
-    <div className="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#f4e9d2] via-[#fbf5ea] to-[#ead7b1] px-4 py-8">
-      {/* Subtle paper texture via repeating radial gradients */}
+    <div className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-[var(--cream)] px-5 py-10">
+      {/* Soft sunset wash at the top */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-50"
+        className="absolute inset-x-0 top-0 h-2/3 pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 30%, rgba(201,169,97,0.08) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(168,132,58,0.06) 0%, transparent 40%)",
+          background:
+            "radial-gradient(ellipse at 50% 65%, rgba(244,168,107,0.22) 0%, rgba(244,168,107,0.08) 35%, transparent 65%)",
         }}
         aria-hidden
       />
 
-      {/* The card */}
+      {/* Top brand mark */}
       <motion.div
-        className="relative w-full max-w-md aspect-[5/7] rounded-[2px] shadow-[0_30px_80px_-20px_rgba(58,49,40,0.45),0_15px_40px_-15px_rgba(58,49,40,0.3)] overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, #fbf5ea 0%, #f4e9d2 50%, #ead7b1 100%)",
-        }}
-        initial={{ opacity: 0, scale: 0.92, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }}
+        className="relative z-10 flex flex-col items-center mb-6"
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
       >
-        {/* Outer gold frame */}
-        <div className="absolute inset-4 border border-[var(--gold-deep)]/50 rounded-[1px]" />
-        <div className="absolute inset-5 border border-[var(--gold)]/30 rounded-[1px]" />
+        <WaveMark className="w-12 h-12 text-[var(--sea-deep)]" />
+        <p className="font-serif text-[var(--sea-deep)] text-2xl mt-2 tracking-wide">
+          {eventConfig.venue}
+        </p>
+        <p className="text-[10px] tracking-[0.5em] text-[var(--ink-soft)] uppercase mt-0.5">
+          {eventConfig.venueTagline}
+        </p>
+      </motion.div>
 
-        {/* Corner flourishes */}
-        <CornerFlourish className="absolute top-3 left-3 w-14 h-14" />
-        <CornerFlourish className="absolute top-3 right-3 w-14 h-14 scale-x-[-1]" />
-        <CornerFlourish className="absolute bottom-3 left-3 w-14 h-14 scale-y-[-1]" />
-        <CornerFlourish className="absolute bottom-3 right-3 w-14 h-14 scale-x-[-1] scale-y-[-1]" />
+      {/* Hero illustration card */}
+      <motion.div
+        className="relative w-full max-w-md aspect-[4/5] rounded-sm overflow-hidden shadow-[0_30px_80px_-25px_rgba(22,49,62,0.5),0_15px_40px_-15px_rgba(22,49,62,0.3)]"
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
+      >
+        {/* Sunset sky + sea illustration as background */}
+        <BeachScene className="absolute inset-0 w-full h-full" />
 
-        {/* Card content */}
-        <div className="relative h-full flex flex-col items-center text-center px-8 pt-12 pb-10">
-          {/* Top: small label */}
-          <motion.p
-            className="text-[10px] tracking-[0.6em] text-[var(--gold-deep)] uppercase mb-1"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            together with their families
-          </motion.p>
+        {/* Subtle vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/35" />
 
-          {/* Save the Date — script */}
+        {/* Top label */}
+        <motion.p
+          className="absolute top-6 inset-x-0 text-center text-[10px] tracking-[0.55em] text-white/85 uppercase z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+        >
+          together with their families
+        </motion.p>
+
+        {/* Bottom content */}
+        <div className="absolute bottom-0 inset-x-0 p-7 flex flex-col items-center text-center z-10">
           <motion.h1
-            className="font-serif italic gold-text leading-none mt-3"
-            style={{ fontSize: "clamp(2.75rem, 12vw, 4rem)" }}
+            className="font-serif italic text-white leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+            style={{ fontSize: "clamp(2.5rem, 11vw, 3.75rem)" }}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            transition={{ duration: 1, delay: 1.2 }}
           >
             Save the Date
           </motion.h1>
 
-          {/* Ornamental separator */}
           <motion.div
-            className="flex items-center gap-2 mt-4"
+            className="flex items-center gap-3 mt-3"
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.9, delay: 0.9 }}
+            transition={{ duration: 0.9, delay: 1.4 }}
           >
-            <Sprig className="w-10 h-3" />
+            <span className="block w-10 h-px bg-white/70" />
             <Diamond />
-            <Sprig className="w-10 h-3 scale-x-[-1]" />
+            <span className="block w-10 h-px bg-white/70" />
           </motion.div>
 
-          {/* Center illustration */}
-          <motion.div
-            className="my-5 w-full flex justify-center"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1 }}
-          >
-            <ChuppahIllustration className="w-44 h-32" />
-          </motion.div>
-
-          {/* Names */}
           <motion.p
-            className="font-serif text-[var(--ink)] leading-tight"
-            style={{ fontSize: "clamp(1.5rem, 6vw, 2rem)" }}
+            className="font-serif text-white mt-3 leading-tight"
+            style={{ fontSize: "clamp(1.4rem, 5.5vw, 1.85rem)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.3 }}
+            transition={{ duration: 1, delay: 1.6 }}
           >
             {eventConfig.groomName}
-            <span className="block italic text-2xl my-1 text-[var(--gold-deep)]">
-              &amp;
-            </span>
+            <span className="italic mx-2 text-[var(--gold-light)]">&amp;</span>
             {eventConfig.brideName}
           </motion.p>
 
-          {/* Spacer */}
-          <div className="flex-1" />
-
-          {/* Date row */}
           <motion.div
-            className="flex items-stretch gap-3 mt-4"
+            className="flex items-baseline gap-3 mt-5 text-white"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 1.5 }}
+            transition={{ duration: 0.9, delay: 1.8 }}
           >
-            <DateBox value="24" label="יום" />
-            <div className="self-center font-serif gold-text text-3xl">·</div>
-            <DateBox value="06" label="חודש" />
-            <div className="self-center font-serif gold-text text-3xl">·</div>
-            <DateBox value="26" label="שנה" />
+            <span className="font-serif text-4xl sm:text-5xl tabular-nums">
+              24
+            </span>
+            <span className="font-serif text-2xl text-[var(--gold-light)]">
+              ·
+            </span>
+            <span className="font-serif text-4xl sm:text-5xl tabular-nums">
+              06
+            </span>
+            <span className="font-serif text-2xl text-[var(--gold-light)]">
+              ·
+            </span>
+            <span className="font-serif text-4xl sm:text-5xl tabular-nums">
+              26
+            </span>
           </motion.div>
 
-          {/* Bottom flourish + label */}
-          <motion.div
-            className="mt-5 flex flex-col items-center"
+          <motion.p
+            className="text-[11px] tracking-[0.4em] text-white/85 uppercase mt-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.7 }}
+            transition={{ duration: 1, delay: 2 }}
           >
-            <div className="flex items-center gap-2">
-              <span className="block w-12 h-px bg-[var(--gold)]" />
-              <Diamond small />
-              <span className="block w-12 h-px bg-[var(--gold)]" />
-            </div>
-            <p className="font-serif tracking-[0.4em] text-sm text-[var(--gold-deep)] uppercase mt-3">
-              The Wedding
-            </p>
-          </motion.div>
+            {eventConfig.venueSubtitle}
+          </motion.p>
         </div>
       </motion.div>
 
-      {/* CTA below card */}
+      {/* CTA */}
       <motion.button
         type="button"
         onClick={onContinue}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 rounded-full border border-[var(--gold)] bg-[var(--cream-soft)]/80 backdrop-blur px-6 py-2.5 text-xs tracking-[0.3em] text-[var(--gold-deep)] uppercase hover:bg-[var(--gold)] hover:text-white transition-colors shadow-md"
+        className="relative z-10 mt-7 inline-flex items-center gap-2 rounded-none border border-[var(--sea-deep)] bg-[var(--sea-deep)] px-7 py-3 text-xs tracking-[0.35em] text-[var(--cream-soft)] uppercase hover:bg-transparent hover:text-[var(--sea-deep)] transition-colors"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 2.1 }}
+        transition={{ duration: 0.8, delay: 2.2 }}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.97 }}
       >
@@ -155,257 +146,194 @@ export default function SaveTheDate({ onContinue }: Props) {
   );
 }
 
-function DateBox({ value, label }: { value: string; label: string }) {
+function Diamond() {
   return (
-    <div className="flex flex-col items-center">
-      <span
-        className="font-serif gold-text leading-none tabular-nums"
-        style={{ fontSize: "clamp(2rem, 8vw, 2.5rem)" }}
-      >
-        {value}
-      </span>
-      <span className="mt-1 text-[9px] tracking-[0.3em] text-[var(--ink-soft)] uppercase">
-        {label}
-      </span>
-    </div>
-  );
-}
-
-function Diamond({ small = false }: { small?: boolean }) {
-  const size = small ? 8 : 12;
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 14 14"
-      aria-hidden
-      className="shrink-0"
-    >
-      <path d="M7 0 L14 7 L7 14 L0 7 Z" fill="var(--gold-deep)" />
-      <path d="M7 3 L11 7 L7 11 L3 7 Z" fill="var(--gold-light)" />
+    <svg width="10" height="10" viewBox="0 0 14 14" aria-hidden className="shrink-0">
+      <path d="M7 0 L14 7 L7 14 L0 7 Z" fill="#e7d4a3" />
     </svg>
   );
 }
 
-function Sprig({ className }: { className?: string }) {
+function WaveMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 14" className={className} aria-hidden>
-      <path
-        d="M 2 7 Q 20 7, 40 7 T 78 7"
-        stroke="var(--gold-deep)"
-        strokeWidth="0.8"
+    <svg viewBox="0 0 60 60" className={className} aria-hidden>
+      <circle
+        cx="30"
+        cy="30"
+        r="28"
         fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
       />
-      {/* Leaves */}
-      {[15, 28, 42, 56, 68].map((cx, i) => (
-        <g key={i} transform={`translate(${cx}, 7)`}>
-          <ellipse
-            cx="0"
-            cy="-3"
-            rx="3"
-            ry="1.5"
-            transform="rotate(-30)"
-            fill="var(--gold)"
-            opacity="0.85"
-          />
-          <ellipse
-            cx="0"
-            cy="3"
-            rx="3"
-            ry="1.5"
-            transform="rotate(30)"
-            fill="var(--gold)"
-            opacity="0.85"
-          />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-function CornerFlourish({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 80 80" className={className} aria-hidden>
-      <defs>
-        <linearGradient id="cornerGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#a8843a" />
-          <stop offset="50%" stopColor="#c9a961" />
-          <stop offset="100%" stopColor="#e7d4a3" />
-        </linearGradient>
-      </defs>
-      {/* Curl */}
       <path
-        d="M 8 8 Q 8 28 28 28 Q 38 28 38 18 Q 38 12 32 12 Q 26 12 26 18"
-        stroke="url(#cornerGrad)"
-        strokeWidth="1.2"
+        d="M 14 32 Q 22 26, 30 32 T 46 32"
         fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
         strokeLinecap="round"
       />
-      {/* Inner curl */}
       <path
-        d="M 12 12 Q 12 22 22 22"
-        stroke="url(#cornerGrad)"
-        strokeWidth="0.8"
+        d="M 16 38 Q 23 33, 30 38 T 44 38"
         fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
         opacity="0.7"
       />
-      {/* Tiny leaves */}
-      <ellipse cx="34" cy="22" rx="3" ry="1.2" transform="rotate(-30 34 22)" fill="url(#cornerGrad)" />
-      <ellipse cx="22" cy="34" rx="3" ry="1.2" transform="rotate(60 22 34)" fill="url(#cornerGrad)" />
-      <circle cx="38" cy="18" r="1.2" fill="url(#cornerGrad)" />
     </svg>
   );
 }
 
-function ChuppahIllustration({ className }: { className?: string }) {
+function BeachScene({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 200 140" className={className} aria-hidden>
+    <svg
+      viewBox="0 0 400 500"
+      className={className}
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden
+    >
       <defs>
-        <linearGradient id="archGold" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#e7d4a3" />
-          <stop offset="50%" stopColor="#c9a961" />
-          <stop offset="100%" stopColor="#a8843a" />
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3d4a5e" />
+          <stop offset="20%" stopColor="#7a6a6e" />
+          <stop offset="45%" stopColor="#e0936a" />
+          <stop offset="62%" stopColor="#f4b67a" />
+          <stop offset="75%" stopColor="#f8d896" />
+          <stop offset="100%" stopColor="#f4a86b" />
         </linearGradient>
-        <radialGradient id="sunRise" cx="50%" cy="80%" r="70%">
-          <stop offset="0%" stopColor="#fff4d2" stopOpacity="1" />
-          <stop offset="35%" stopColor="#f8d896" stopOpacity="0.7" />
-          <stop offset="70%" stopColor="#f4b35e" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#f4b35e" stopOpacity="0" />
+        <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#fff5d8" stopOpacity="1" />
+          <stop offset="50%" stopColor="#ffd896" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#f4a86b" stopOpacity="0" />
         </radialGradient>
-        <linearGradient id="leafGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#e7d4a3" />
-          <stop offset="100%" stopColor="#a8843a" />
-        </linearGradient>
         <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#cfd9dc" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#2f5a6e" stopOpacity="0.55" />
+          <stop offset="0%" stopColor="#5a4a52" />
+          <stop offset="50%" stopColor="#3a4a52" />
+          <stop offset="100%" stopColor="#1f2a32" />
+        </linearGradient>
+        <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fbf5ea" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#e8dcc4" stopOpacity="0.85" />
         </linearGradient>
       </defs>
 
-      {/* Sea (below horizon) */}
-      <rect x="0" y="115" width="200" height="25" fill="url(#seaGrad)" />
+      {/* Sky */}
+      <rect width="400" height="340" fill="url(#skyGrad)" />
 
-      {/* Sun glow behind arch */}
-      <ellipse cx="100" cy="115" rx="85" ry="55" fill="url(#sunRise)" />
+      {/* Sun glow */}
+      <circle cx="200" cy="285" r="100" fill="url(#sunGrad)" />
+      <ellipse
+        cx="200"
+        cy="290"
+        rx="38"
+        ry="38"
+        fill="#fff5d8"
+        opacity="0.85"
+      />
 
-      {/* Sun reflection on water */}
-      <ellipse cx="100" cy="118" rx="14" ry="2" fill="#fff4d2" opacity="0.65" />
-      <ellipse cx="100" cy="124" rx="20" ry="1.2" fill="#fff4d2" opacity="0.4" />
-      <ellipse cx="100" cy="130" rx="26" ry="0.9" fill="#fff4d2" opacity="0.25" />
+      {/* Tree silhouettes left */}
+      <g fill="#1a1610" opacity="0.85">
+        <path d="M -5 200 Q 30 120, 55 180 Q 75 130, 90 200 Q 65 220, 50 230 Q 30 235, 10 230 Q -5 220, -5 200 Z" />
+        <rect x="40" y="220" width="3" height="80" />
+        <path d="M 30 320 L 60 320 Q 50 280, 42 220" />
+      </g>
 
+      {/* Tree silhouettes right */}
+      <g fill="#1a1610" opacity="0.85">
+        <path d="M 305 200 Q 340 120, 365 180 Q 385 140, 405 195 Q 405 230, 380 235 Q 350 235, 320 230 Q 305 220, 305 200 Z" />
+        <rect x="355" y="225" width="3" height="80" />
+      </g>
+      <g fill="#1a1610" opacity="0.7">
+        <path d="M 360 100 Q 380 60, 395 105 Q 410 80, 415 130 Q 405 140, 380 135 Q 365 130, 360 100 Z" />
+      </g>
+
+      {/* Sea */}
+      <rect y="320" width="400" height="50" fill="url(#seaGrad)" />
+      {/* Sun reflection on sea */}
+      <ellipse cx="200" cy="325" rx="55" ry="3" fill="#fff5d8" opacity="0.6" />
+      <ellipse cx="200" cy="335" rx="80" ry="2" fill="#fff5d8" opacity="0.4" />
+      <ellipse cx="200" cy="345" rx="100" ry="1.5" fill="#fff5d8" opacity="0.25" />
       {/* Wave hints */}
       <path
-        d="M 0 120 Q 25 119, 50 120 T 100 120 T 150 120 T 200 120"
-        stroke="rgba(47,90,110,0.3)"
-        strokeWidth="0.4"
-        fill="none"
-      />
-      <path
-        d="M 0 126 Q 25 125, 50 126 T 100 126 T 150 126 T 200 126"
-        stroke="rgba(47,90,110,0.25)"
-        strokeWidth="0.3"
-        fill="none"
-      />
-
-      {/* Horizon line */}
-      <line
-        x1="0"
-        y1="115"
-        x2="200"
-        y2="115"
-        stroke="var(--gold-deep)"
-        strokeWidth="0.5"
-        opacity="0.6"
-      />
-
-      {/* Round arch / chuppah */}
-      {/* Pillars */}
-      <line x1="65" y1="115" x2="65" y2="55" stroke="url(#archGold)" strokeWidth="1.5" />
-      <line x1="135" y1="115" x2="135" y2="55" stroke="url(#archGold)" strokeWidth="1.5" />
-      {/* Top arc */}
-      <path
-        d="M 65 55 Q 100 25, 135 55"
-        stroke="url(#archGold)"
-        strokeWidth="1.5"
-        fill="none"
-      />
-      {/* Inner arc highlight */}
-      <path
-        d="M 70 56 Q 100 32, 130 56"
-        stroke="url(#archGold)"
+        d="M 0 350 Q 50 348, 100 350 T 200 350 T 300 350 T 400 350"
+        stroke="rgba(255,245,216,0.2)"
         strokeWidth="0.6"
         fill="none"
+      />
+      <path
+        d="M 0 358 Q 50 357, 100 358 T 200 358 T 300 358 T 400 358"
+        stroke="rgba(255,245,216,0.15)"
+        strokeWidth="0.5"
+        fill="none"
+      />
+
+      {/* Stage / floor */}
+      <rect y="370" width="400" height="130" fill="#2a2018" />
+      <rect y="370" width="400" height="6" fill="#1a1410" />
+
+      {/* Round chuppah platform */}
+      <ellipse cx="200" cy="380" rx="105" ry="12" fill="#1a1410" />
+      <ellipse cx="200" cy="378" rx="100" ry="9" fill="#3a2e22" />
+
+      {/* Two columns */}
+      <g>
+        <rect x="135" y="225" width="9" height="155" fill="#fbf5ea" opacity="0.92" />
+        <rect x="133" y="222" width="13" height="6" fill="#fbf5ea" />
+        <rect x="133" y="378" width="13" height="6" fill="#fbf5ea" />
+      </g>
+      <g>
+        <rect x="256" y="225" width="9" height="155" fill="#fbf5ea" opacity="0.92" />
+        <rect x="254" y="222" width="13" height="6" fill="#fbf5ea" />
+        <rect x="254" y="378" width="13" height="6" fill="#fbf5ea" />
+      </g>
+
+      {/* Round arch top — ellipse outline */}
+      <ellipse
+        cx="200"
+        cy="225"
+        rx="65"
+        ry="14"
+        fill="none"
+        stroke="#fbf5ea"
+        strokeWidth="2.5"
+        opacity="0.95"
+      />
+      {/* Inner ring */}
+      <ellipse
+        cx="200"
+        cy="225"
+        rx="58"
+        ry="11"
+        fill="none"
+        stroke="#fbf5ea"
+        strokeWidth="0.8"
         opacity="0.6"
       />
 
-      {/* Floral cluster on top of arch */}
-      {[
-        { cx: 75, cy: 50, r: 3.5 },
-        { cx: 85, cy: 42, r: 4 },
-        { cx: 95, cy: 36, r: 4.2 },
-        { cx: 105, cy: 34, r: 4.5 },
-        { cx: 115, cy: 38, r: 4 },
-        { cx: 125, cy: 46, r: 3.8 },
-        { cx: 100, cy: 28, r: 3.8 },
-        { cx: 90, cy: 32, r: 3.4 },
-        { cx: 110, cy: 30, r: 3.6 },
-      ].map((flower, i) => (
-        <g key={i}>
-          <circle
-            cx={flower.cx}
-            cy={flower.cy}
-            r={flower.r}
-            fill="url(#leafGrad)"
-            opacity="0.85"
-          />
-          <circle
-            cx={flower.cx}
-            cy={flower.cy}
-            r={flower.r * 0.45}
-            fill="#fbf5ea"
-            opacity="0.9"
-          />
-        </g>
-      ))}
-
-      {/* Hanging leaves from arch */}
-      <path d="M 70 56 Q 72 65, 68 75" stroke="url(#leafGrad)" strokeWidth="0.5" fill="none" />
-      <path d="M 130 56 Q 128 65, 132 75" stroke="url(#leafGrad)" strokeWidth="0.5" fill="none" />
-
-      {/* Drape curtains hint */}
+      {/* Hanging curtains - flowing drapes */}
       <path
-        d="M 65 60 Q 60 90, 58 115 L 62 115 Q 64 90, 68 60"
-        fill="rgba(251,245,234,0.8)"
-        stroke="var(--gold)"
-        strokeWidth="0.3"
+        d="M 145 230 Q 138 280, 142 330 Q 148 360, 155 380 L 175 380 Q 168 350, 165 310 Q 163 270, 160 230 Z"
+        fill="url(#curtain)"
+        opacity="0.92"
       />
       <path
-        d="M 135 60 Q 140 90, 142 115 L 138 115 Q 136 90, 132 60"
-        fill="rgba(251,245,234,0.8)"
-        stroke="var(--gold)"
-        strokeWidth="0.3"
+        d="M 240 230 Q 237 270, 235 310 Q 232 350, 225 380 L 245 380 Q 252 360, 258 330 Q 262 280, 255 230 Z"
+        fill="url(#curtain)"
+        opacity="0.92"
       />
 
-      {/* Lanterns at the path */}
-      {[35, 50, 150, 165].map((x, i) => (
-        <g key={i}>
-          <rect x={x - 1.5} y="105" width="3" height="6" fill="url(#archGold)" />
-          <circle cx={x} cy="103" r="1.2" fill="#fff4d2" opacity="0.9" />
-        </g>
-      ))}
+      {/* Center curtain hint behind */}
+      <path
+        d="M 175 225 Q 180 280, 185 350 Q 195 380, 200 380 Q 205 380, 215 350 Q 220 280, 225 225 Z"
+        fill="rgba(251,245,234,0.35)"
+      />
 
-      {/* Pathway dots */}
-      {[80, 90, 100, 110, 120].map((x, i) => (
-        <ellipse
-          key={i}
-          cx={x}
-          cy={120 + i * 0.5}
-          rx="1.5"
-          ry="0.4"
-          fill="var(--gold-deep)"
-          opacity="0.4"
-        />
-      ))}
+      {/* Curtain folds */}
+      <path d="M 152 240 Q 150 300, 165 380" stroke="rgba(58,40,30,0.15)" strokeWidth="0.6" fill="none" />
+      <path d="M 248 240 Q 250 300, 235 380" stroke="rgba(58,40,30,0.15)" strokeWidth="0.6" fill="none" />
+
+      {/* Top knot/tieback decoration */}
+      <circle cx="200" cy="218" r="3" fill="#c9a961" />
     </svg>
   );
 }

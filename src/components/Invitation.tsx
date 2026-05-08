@@ -30,9 +30,9 @@ export default function Invitation() {
           <p className="text-[10px] tracking-[0.5em] text-[var(--gold-deep)] uppercase">
             מתחתנים
           </p>
-          <h1 className="font-serif text-5xl sm:text-6xl gold-text leading-tight">
+          <h1 className="font-serif text-5xl sm:text-6xl text-[var(--sea-deep)] leading-tight">
             {eventConfig.groomNameHe}
-            <span className="block italic text-3xl sm:text-4xl my-2 text-[var(--ink-soft)]">
+            <span className="block italic text-3xl sm:text-4xl my-2 text-[var(--gold-deep)]">
               &amp;
             </span>
             {eventConfig.brideNameHe}
@@ -109,7 +109,7 @@ export default function Invitation() {
           custom={1}
           className="w-full"
         >
-          <p className="font-serif text-2xl gold-text mb-1">אישור הגעה</p>
+          <p className="font-serif text-2xl text-[var(--sea-deep)] mb-1">אישור הגעה</p>
           <p className="text-sm text-[var(--ink-soft)] mb-6">
             נשמח לראותכם — אנא אשרו הגעה
           </p>

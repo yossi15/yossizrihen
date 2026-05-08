@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f8f1e4;
-  --cream-soft: #fbf5ea;
+  --cream: #f0e8dc;
+  --cream-soft: #f8f2e6;
+  --cream-deep: #e6dcc9;
   --gold: #c9a961;
   --gold-deep: #a8843a;
   --gold-light: #e7d4a3;
   --wax: #b9342c;
   --wax-deep: #7a1f1a;
-  --ink: #3a3128;
-  --ink-soft: #6b5d4f;
-  --sea-deep: #1f3a4a;
-  --sea: #2f5a6e;
+  --ink: #1a2a35;
+  --ink-soft: #4a5a66;
+  --sea-deep: #16313e;
+  --sea: #2a4a5a;
   --sea-mist: #cfd9dc;
+  --sunset: #f4a86b;
   --sand: #e8d6b3;
 }
 

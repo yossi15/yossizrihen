@@ -33,7 +33,7 @@ await page.screenshot({ path: `${OUT}/02-envelope.png`, fullPage: false });
 // Click the wax seal (button with aria-label פתח את ההזמנה)
 const seal = await page.$('button[aria-label="פתח את ההזמנה"]');
 await seal.click();
-await new Promise((r) => setTimeout(r, 2500));
+await new Promise((r) => setTimeout(r, 6000));
 
 console.log("Stage 3: Invitation top");
 await page.screenshot({ path: `${OUT}/03-invitation-top.png`, fullPage: false });

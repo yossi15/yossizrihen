@@ -42,7 +42,7 @@ export default function Countdown({ target }: { target: Date }) {
           key={label}
           className="flex flex-col items-center rounded-md bg-[var(--cream-soft)] border border-[var(--gold)]/30 py-3 px-1 sm:px-2 shadow-sm"
         >
-          <span className="font-serif text-2xl sm:text-3xl gold-text tabular-nums leading-none">
+          <span className="font-serif text-2xl sm:text-3xl text-[var(--sea-deep)] tabular-nums leading-none">
             {value !== undefined ? String(value).padStart(2, "0") : "––"}
           </span>
           <span className="mt-1 text-[10px] sm:text-xs tracking-[0.2em] text-[var(--ink-soft)]">
