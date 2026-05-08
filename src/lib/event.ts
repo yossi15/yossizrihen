@@ -9,8 +9,10 @@ export const eventConfig = {
   dateShort: "24 / 6",
   dateLabel: "יום רביעי, ח׳ בתמוז תשפ״ו",
   timeLabel: "קבלת פנים: 19:00 · חופה: 20:30",
-  venue: "אחוזת החוף",
-  address: "רח׳ החוף 1, הרצליה",
-  wazeUrl: "https://waze.com/ul?q=אחוזת החוף הרצליה",
+  venue: "קו המים",
+  venueSubtitle: "על שפת הים, נתניה",
+  address: "חוף הצוק הצפוני, נתניה",
+  wazeUrl: "https://waze.com/ul?q=קו המים נתניה",
+  venueUrl: "https://kavhamaim.co.il/",
   heroImage: "/save-the-date.svg",
 };

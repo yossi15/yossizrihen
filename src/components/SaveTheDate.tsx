@@ -266,29 +266,56 @@ function ChuppahIllustration({ className }: { className?: string }) {
           <stop offset="50%" stopColor="#c9a961" />
           <stop offset="100%" stopColor="#a8843a" />
         </linearGradient>
-        <radialGradient id="sunRise" cx="50%" cy="100%" r="70%">
-          <stop offset="0%" stopColor="#f8d896" stopOpacity="0.9" />
-          <stop offset="60%" stopColor="#f4b35e" stopOpacity="0.4" />
+        <radialGradient id="sunRise" cx="50%" cy="80%" r="70%">
+          <stop offset="0%" stopColor="#fff4d2" stopOpacity="1" />
+          <stop offset="35%" stopColor="#f8d896" stopOpacity="0.7" />
+          <stop offset="70%" stopColor="#f4b35e" stopOpacity="0.25" />
           <stop offset="100%" stopColor="#f4b35e" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="leafGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#e7d4a3" />
           <stop offset="100%" stopColor="#a8843a" />
         </linearGradient>
+        <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#cfd9dc" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#2f5a6e" stopOpacity="0.55" />
+        </linearGradient>
       </defs>
 
+      {/* Sea (below horizon) */}
+      <rect x="0" y="115" width="200" height="25" fill="url(#seaGrad)" />
+
       {/* Sun glow behind arch */}
-      <ellipse cx="100" cy="115" rx="80" ry="50" fill="url(#sunRise)" />
+      <ellipse cx="100" cy="115" rx="85" ry="55" fill="url(#sunRise)" />
+
+      {/* Sun reflection on water */}
+      <ellipse cx="100" cy="118" rx="14" ry="2" fill="#fff4d2" opacity="0.65" />
+      <ellipse cx="100" cy="124" rx="20" ry="1.2" fill="#fff4d2" opacity="0.4" />
+      <ellipse cx="100" cy="130" rx="26" ry="0.9" fill="#fff4d2" opacity="0.25" />
+
+      {/* Wave hints */}
+      <path
+        d="M 0 120 Q 25 119, 50 120 T 100 120 T 150 120 T 200 120"
+        stroke="rgba(47,90,110,0.3)"
+        strokeWidth="0.4"
+        fill="none"
+      />
+      <path
+        d="M 0 126 Q 25 125, 50 126 T 100 126 T 150 126 T 200 126"
+        stroke="rgba(47,90,110,0.25)"
+        strokeWidth="0.3"
+        fill="none"
+      />
 
       {/* Horizon line */}
       <line
-        x1="20"
+        x1="0"
         y1="115"
-        x2="180"
+        x2="200"
         y2="115"
         stroke="var(--gold-deep)"
-        strokeWidth="0.4"
-        opacity="0.5"
+        strokeWidth="0.5"
+        opacity="0.6"
       />
 
       {/* Round arch / chuppah */}

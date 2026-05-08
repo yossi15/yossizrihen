@@ -58,7 +58,10 @@ export default function Invitation() {
             value={
               <>
                 <span className="block">{eventConfig.venue}</span>
-                <span className="block text-sm text-[var(--ink-soft)]">
+                <span className="block text-sm text-[var(--ink-soft)] mt-0.5">
+                  {eventConfig.venueSubtitle}
+                </span>
+                <span className="block text-xs text-[var(--ink-soft)]/80 mt-0.5">
                   {eventConfig.address}
                 </span>
               </>

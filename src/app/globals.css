@@ -10,6 +10,10 @@
   --wax-deep: #7a1f1a;
   --ink: #3a3128;
   --ink-soft: #6b5d4f;
+  --sea-deep: #1f3a4a;
+  --sea: #2f5a6e;
+  --sea-mist: #cfd9dc;
+  --sand: #e8d6b3;
 }
 
 @theme inline {
@@ -21,6 +25,9 @@
   --color-wax: var(--wax);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-sea: var(--sea);
+  --color-sea-deep: var(--sea-deep);
+  --color-sand: var(--sand);
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
 }
