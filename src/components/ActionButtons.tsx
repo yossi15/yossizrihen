@@ -45,7 +45,7 @@ export default function ActionButtons() {
         href={eventConfig.wazeUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 inline-flex items-center justify-center gap-2 rounded-md border border-[var(--gold)] bg-transparent px-5 py-3 text-sm tracking-[0.15em] text-[var(--gold-deep)] hover:bg-[var(--gold)] hover:text-white transition-colors"
+        className="flex-1 inline-flex items-center justify-center gap-2 rounded-md border-2 border-[var(--gold-deep)] bg-[var(--cream-soft)] px-5 py-3 text-sm font-medium tracking-[0.15em] text-[var(--gold-deep)] hover:bg-[var(--gold-deep)] hover:text-white transition-colors"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
           <path
