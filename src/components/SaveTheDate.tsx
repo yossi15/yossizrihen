@@ -95,6 +95,7 @@ export default function SaveTheDate({ onContinue }: Props) {
           </motion.p>
 
           <motion.div
+            dir="ltr"
             className="flex items-baseline gap-3 mt-5 text-white"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
