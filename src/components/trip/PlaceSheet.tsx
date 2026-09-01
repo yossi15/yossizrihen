@@ -58,6 +58,37 @@ export default function PlaceSheet({
         </p>
       )}
 
+      {(place.address || place.hours || place.phone) && (
+        <dl className="mt-3 space-y-1.5 rounded-2xl bg-[var(--t-paper)] p-3 text-[13px]">
+          {place.address && (
+            <div className="flex gap-2">
+              <dt className="shrink-0 text-[var(--t-muted)]">כתובת</dt>
+              <dd className="min-w-0">{place.address}</dd>
+            </div>
+          )}
+          {place.hours && (
+            <div className="flex gap-2">
+              <dt className="shrink-0 text-[var(--t-muted)]">שעות</dt>
+              <dd className="min-w-0">{place.hours}</dd>
+            </div>
+          )}
+          {place.phone && (
+            <div className="flex gap-2">
+              <dt className="shrink-0 text-[var(--t-muted)]">טלפון</dt>
+              <dd className="min-w-0">
+                <a
+                  href={`tel:${place.phone.replace(/[^+\d]/g, "")}`}
+                  dir="ltr"
+                  className="font-semibold text-[var(--t-teal)] underline"
+                >
+                  {place.phone}
+                </a>
+              </dd>
+            </div>
+          )}
+        </dl>
+      )}
+
       {place.tip && (
         <div className="mt-3 rounded-2xl bg-[var(--t-paper)] p-3">
           <p className="mb-1 text-[11px] font-extrabold uppercase tracking-[0.14em] text-[var(--t-coral)]">

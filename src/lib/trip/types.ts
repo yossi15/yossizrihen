@@ -32,6 +32,10 @@ export type Place = {
   /** קואורדינטות משוערות — לאמת לפני שנוסעים */
   approx?: boolean;
   phone?: string;
+  /** שעות פתיחה כפי שפורסמו — תמיד לאמת לפני נסיעה */
+  hours?: string;
+  /** כתובת מלאה */
+  address?: string;
   url?: string;
   /** מקום שהמשתמש הוסיף בעצמו — נשמר בדפדפן בלבד */
   custom?: boolean;
