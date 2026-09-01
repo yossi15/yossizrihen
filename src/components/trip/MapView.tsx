@@ -6,6 +6,29 @@ import { CATEGORY_META } from "@/lib/trip/categories";
 import { REGION_BY_ID } from "@/lib/trip/regions";
 import type { Place, RegionId } from "@/lib/trip/types";
 
+/**
+ * מקומות רבים חולקים כתובת אחת (כל מסעדות חב"ד באותו בניין), והסמנים
+ * נערמים זה על זה. מפזרים כפילויות במעגל קטן כדי שכל אחת תהיה לחיצה.
+ */
+function fanOut(places: Place[]) {
+  const seen = new Map<string, number>();
+  return places.map((p) => {
+    const key = `${p.lat.toFixed(3)},${p.lng.toFixed(3)}`;
+    const n = seen.get(key) ?? 0;
+    seen.set(key, n + 1);
+    if (n === 0) return { place: p, lat: p.lat, lng: p.lng };
+    // ספירלה: ~35 מטר לכל טבעת, שמונה סמנים בטבעת
+    const ring = Math.floor((n - 1) / 8) + 1;
+    const angle = ((n - 1) % 8) * (Math.PI / 4);
+    const r = 0.00032 * ring;
+    return {
+      place: p,
+      lat: p.lat + r * Math.cos(angle),
+      lng: p.lng + (r * Math.sin(angle)) / Math.cos((p.lat * Math.PI) / 180),
+    };
+  });
+}
+
 type Props = {
   places: Place[];
   selectedId: string | null;
@@ -69,6 +92,7 @@ export default function MapView({
     const m = map.current;
     if (!L || !m || !ready) return;
 
+    const positioned = fanOut(places);
     const wanted = new Set(places.map((p) => p.id));
     for (const [id, marker] of markers.current) {
       if (!wanted.has(id)) {
@@ -77,7 +101,7 @@ export default function MapView({
       }
     }
 
-    for (const place of places) {
+    for (const { place, lat, lng } of positioned) {
       if (markers.current.has(place.id)) continue;
       const meta = CATEGORY_META[place.category];
       const icon = L.divIcon({
@@ -86,7 +110,7 @@ export default function MapView({
         iconSize: [30, 30],
         iconAnchor: [15, 30],
       });
-      const marker = L.marker([place.lat, place.lng], {
+      const marker = L.marker([lat, lng], {
         icon,
         title: place.name,
       })

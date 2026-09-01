@@ -13,6 +13,7 @@ export const CATEGORY_META: Record<
   market: { label: "שווקים", icon: "🏮", color: "#f472b6" },
   viewpoint: { label: "תצפיות", icon: "⛰", color: "#c4b5fd" },
   boat: { label: "ימי שייט", icon: "⛵", color: "#38bdf8" },
+  fun: { label: "אטרקציות", icon: "🎢", color: "#f59e0b" },
   transport: { label: "תחבורה", icon: "✈", color: "#94a3b8" },
 };
 
@@ -24,6 +25,7 @@ export const CATEGORY_ORDER: Category[] = [
   "temple",
   "nature",
   "viewpoint",
+  "fun",
   "party",
   "market",
   "transport",

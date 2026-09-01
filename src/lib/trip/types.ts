@@ -10,6 +10,7 @@ export type Category =
   | "market"
   | "viewpoint"
   | "boat"
+  | "fun"
   | "transport";
 
 export type Place = {

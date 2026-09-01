@@ -7,6 +7,7 @@ import { PLACES } from "@/lib/trip/places";
 import { REGIONS } from "@/lib/trip/regions";
 import type { Category, Place, RegionId } from "@/lib/trip/types";
 import AddPlaceDialog from "./AddPlaceDialog";
+import PlaceList from "./PlaceList";
 import PlaceSheet from "./PlaceSheet";
 
 // Leaflet נוגע ב-window, ולכן נטען רק בדפדפן
@@ -39,6 +40,7 @@ export default function MapScreen({
   const [onlySaved, setOnlySaved] = useState(false);
   const [onlyMine, setOnlyMine] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [view, setView] = useState<"map" | "list">("map");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [pickMode, setPickMode] = useState(false);
   const [picked, setPicked] = useState<{ lat: number; lng: number } | null>(
@@ -77,7 +79,25 @@ export default function MapScreen({
   return (
     <div className="flex h-full flex-col pt-1">
       <div className="shrink-0 space-y-2 px-4 pb-3">
-        <div className="no-scrollbar flex gap-2 overflow-x-auto">
+        <div className="flex items-center gap-2">
+          <div className="flex shrink-0 rounded-full border border-[var(--t-line)] bg-white p-0.5">
+            {(["map", "list"] as const).map((v) => (
+              <button
+                key={v}
+                onClick={() => setView(v)}
+                aria-pressed={view === v}
+                className="rounded-full px-3 py-1.5 text-xs font-bold transition-colors"
+                style={{
+                  background: view === v ? "var(--t-sea)" : "transparent",
+                  color: view === v ? "#fff" : "var(--t-muted)",
+                }}
+              >
+                {v === "map" ? "מפה" : "רשימה"}
+              </button>
+            ))}
+          </div>
+
+          <div className="no-scrollbar flex min-w-0 flex-1 gap-2 overflow-x-auto">
           <button
             data-on={region === "all"}
             onClick={() => {
@@ -101,6 +121,7 @@ export default function MapScreen({
               {r.name}
             </button>
           ))}
+          </div>
         </div>
 
         <div className="no-scrollbar flex gap-2 overflow-x-auto">
@@ -139,6 +160,15 @@ export default function MapScreen({
       </div>
 
       <div className="trip-card relative mx-4 mb-1 min-h-0 flex-1 overflow-hidden">
+        {view === "list" ? (
+          <PlaceList
+            places={places}
+            saved={saved}
+            onToggleSave={onToggleSave}
+            onRemovePlace={onRemovePlace}
+          />
+        ) : (
+          <>
         <MapView
           places={places}
           selectedId={selectedId}
@@ -195,6 +225,8 @@ export default function MapScreen({
                 : undefined
             }
           />
+        )}
+          </>
         )}
       </div>
 
