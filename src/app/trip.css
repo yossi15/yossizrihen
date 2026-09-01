@@ -1,0 +1,232 @@
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  /* חול, ים ושקיעה */
+  --t-paper: #f3faf8;
+  --t-paper-2: #e2f2ef;
+  --t-sand: #fdf3e3;
+  --t-surface: #ffffff;
+  --t-ink: #08343d;
+  --t-ink-2: #256671;
+  --t-muted: #6d959c;
+  --t-line: #d9ece9;
+  --t-coral: #ff7a59;
+  --t-teal: #0fb3a3;
+  --t-aqua: #35cfd6;
+  --t-sun: #ffc35c;
+  --t-violet: #7c5cff;
+  --t-shadow: 0 1px 2px rgba(8, 52, 61, 0.05), 0 16px 36px -22px rgba(8, 52, 61, 0.4);
+  --t-sea: linear-gradient(135deg, var(--t-aqua) 0%, var(--t-teal) 55%, #0a8f92 100%);
+}
+
+.trip-root {
+  color: var(--t-ink);
+  min-height: 100dvh;
+  background: linear-gradient(160deg, #0b6b74 0%, #073f4a 60%, #05303a 100%);
+}
+
+/* האפליקציה עצמה נשארת ברוחב טלפון גם על מסך גדול */
+.trip-shell {
+  background:
+    radial-gradient(900px 460px at 110% -8%, rgba(53, 207, 214, 0.22), transparent 62%),
+    radial-gradient(700px 400px at -10% 4%, rgba(255, 195, 92, 0.2), transparent 58%),
+    linear-gradient(180deg, var(--t-paper) 0%, var(--t-paper) 55%, var(--t-sand) 100%);
+}
+
+@media (min-width: 600px) {
+  .trip-shell {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 30px 80px -30px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.trip-card {
+  background: var(--t-surface);
+  border: 1px solid var(--t-line);
+  border-radius: 26px;
+  box-shadow: var(--t-shadow);
+}
+
+.trip-chip {
+  border: 1px solid var(--t-line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--t-ink-2);
+  box-shadow: 0 1px 2px rgba(8, 52, 61, 0.04);
+  transition:
+    background 0.16s ease,
+    color 0.16s ease,
+    border-color 0.16s ease;
+  white-space: nowrap;
+}
+.trip-chip[data-on="true"] {
+  background: var(--t-sea);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 6px 16px -8px rgba(15, 179, 163, 0.8);
+}
+.trip-chip-soft[data-on="true"] {
+  background: linear-gradient(135deg, #ff9c74, var(--t-coral));
+  box-shadow: 0 6px 16px -8px rgba(255, 122, 89, 0.9);
+}
+
+/* ── כותרת טרופית ── */
+.trip-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--t-sea);
+  color: #fff;
+}
+.trip-hero::before {
+  /* שמש — תמיד בפינה הימנית הפיזית, מאחורי הכותרת */
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -52px;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 150, 0.95) 0%,
+    rgba(255, 195, 92, 0.55) 42%,
+    transparent 70%
+  );
+}
+.trip-hero::after {
+  /* ריצוד אור על המים */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px 200px at 20% 120%,
+    rgba(255, 255, 255, 0.22),
+    transparent 70%
+  );
+}
+.trip-hero > * {
+  position: relative;
+  z-index: 1;
+}
+.trip-wave-back {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 7px;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 20px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.trip-wave {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 24px;
+}
+.trip-glass {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+/* ── Leaflet ── */
+.leaflet-container {
+  background: #d6ecec;
+  font-family: inherit;
+  z-index: 0;
+}
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: #7fa0a5 !important;
+  font-size: 9px !important;
+}
+.leaflet-control-attribution a {
+  color: #5f858c !important;
+}
+.leaflet-bar {
+  border: none !important;
+  box-shadow: var(--t-shadow) !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+}
+.leaflet-bar a {
+  background: #fff !important;
+  color: var(--t-ink) !important;
+  border-color: var(--t-line) !important;
+}
+.leaflet-bar a:hover {
+  background: var(--t-paper-2) !important;
+}
+
+.trip-pin {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 4px;
+  transform: rotate(45deg);
+  border: 2.5px solid #fff;
+  box-shadow: 0 3px 10px rgba(8, 52, 61, 0.35);
+  font-size: 13px;
+  line-height: 1;
+  transition:
+    width 0.15s ease,
+    height 0.15s ease;
+}
+.trip-pin > span {
+  transform: rotate(-45deg);
+}
+.trip-pin[data-active="true"] {
+  width: 42px;
+  height: 42px;
+  font-size: 19px;
+  z-index: 500;
+}
+/* מקומות שהמשתמש הוסיף — טבעת מודגשת כדי להבדיל מהתוכן המובנה */
+.trip-pin-mine {
+  border-color: var(--t-ink);
+  box-shadow:
+    0 0 0 2px #fff,
+    0 3px 10px rgba(8, 52, 61, 0.35);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* ציר זמן של המסלול */
+.trip-rail::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 27px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--t-line) 6%,
+    var(--t-line) 94%,
+    transparent
+  );
+}
+
+@keyframes trip-rise {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.trip-rise {
+  animation: trip-rise 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
