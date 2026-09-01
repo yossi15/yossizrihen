@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { TRIP } from "@/lib/trip/itinerary";
+import TropicalHero from "./TropicalHero";
 import { daysUntil } from "@/lib/trip/format";
 import { useIsClient, useSaved } from "./useSaved";
 import { useCustomPlaces } from "./useCustomPlaces";
@@ -29,32 +30,7 @@ export default function TripApp() {
 
   return (
     <div className="trip-root flex h-[100dvh] flex-col overflow-hidden">
-      <header className="shrink-0 px-5 pb-3 pt-5">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--t-coral)]">
-              המסלול שלנו
-            </p>
-            <h1 className="mt-0.5 text-[30px] font-extrabold leading-none tracking-tight">
-              תאילנד
-              <span className="ms-2 text-[var(--t-muted)]">2026</span>
-            </h1>
-            <p className="mt-1.5 text-[13px] text-[var(--t-muted)]">
-              24.9 — 11.10 · {TRIP.days} ימים · 5 יעדים
-            </p>
-          </div>
-          {countdown !== null && countdown > 0 && (
-            <div className="grid h-[62px] w-[62px] shrink-0 place-items-center rounded-2xl bg-[var(--t-ink)] text-white">
-              <span className="text-[22px] font-extrabold leading-none tabular-nums">
-                {countdown}
-              </span>
-              <span className="text-[9px] tracking-wide text-white/60">
-                ימים
-              </span>
-            </div>
-          )}
-        </div>
-      </header>
+      <TropicalHero countdown={countdown} />
 
       <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
         {tab === "map" && (
@@ -89,8 +65,11 @@ export default function TripApp() {
                 aria-current={on ? "page" : undefined}
                 className="flex flex-col items-center gap-0.5 rounded-full py-2 text-[11px] font-semibold transition-colors"
                 style={{
-                  background: on ? "var(--t-ink)" : "transparent",
+                  background: on ? "var(--t-sea)" : "transparent",
                   color: on ? "#fff" : "var(--t-muted)",
+                  boxShadow: on
+                    ? "0 6px 16px -8px rgba(15,179,163,0.9)"
+                    : undefined,
                 }}
               >
                 <span className="text-base leading-none">{t.icon}</span>

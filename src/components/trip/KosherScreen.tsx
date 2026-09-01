@@ -159,7 +159,8 @@ export default function KosherScreen() {
           href="https://www.chabadthailand.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 block rounded-full bg-[var(--t-ink)] py-3 text-center text-sm font-bold text-white"
+          className="mt-4 block rounded-full py-3 text-center text-sm font-bold text-white"
+          style={{ background: "var(--t-sea)" }}
         >
           אתר חב&quot;ד תאילנד — שעות וזמנים מעודכנים
         </a>

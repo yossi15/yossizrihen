@@ -99,7 +99,11 @@ export default function PlaceSheet({
           href={directionsUrl(place.lat, place.lng)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 rounded-full bg-[var(--t-ink)] py-3 text-center text-sm font-bold text-white"
+          className="flex-1 rounded-full py-3 text-center text-sm font-bold text-white"
+          style={{
+            background: "var(--t-sea)",
+            boxShadow: "0 8px 20px -10px rgba(15,179,163,0.95)",
+          }}
         >
           ניווט בגוגל מפות
         </a>

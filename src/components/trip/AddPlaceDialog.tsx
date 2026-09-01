@@ -203,7 +203,8 @@ export default function AddPlaceDialog({
 
           <button
             onClick={submit}
-            className="w-full rounded-full bg-[var(--t-ink)] py-3 text-sm font-bold text-white"
+            className="w-full rounded-full py-3 text-sm font-bold text-white"
+            style={{ background: "var(--t-sea)" }}
           >
             הוספה למסלול
           </button>

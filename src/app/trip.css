@@ -1,37 +1,45 @@
 @import "leaflet/dist/leaflet.css";
 
 :root {
-  --t-paper: #faf6f0;
-  --t-paper-2: #f2ece3;
+  /* חול, ים ושקיעה */
+  --t-paper: #f3faf8;
+  --t-paper-2: #e2f2ef;
+  --t-sand: #fdf3e3;
   --t-surface: #ffffff;
-  --t-ink: #14313c;
-  --t-ink-2: #2c4d59;
-  --t-muted: #7c9098;
-  --t-line: #e9e0d5;
-  --t-coral: #ff6a4d;
-  --t-teal: #0e9c8a;
+  --t-ink: #08343d;
+  --t-ink-2: #256671;
+  --t-muted: #6d959c;
+  --t-line: #d9ece9;
+  --t-coral: #ff7a59;
+  --t-teal: #0fb3a3;
+  --t-aqua: #35cfd6;
+  --t-sun: #ffc35c;
   --t-violet: #7c5cff;
-  --t-sun: #ffb020;
-  --t-shadow: 0 1px 2px rgba(20, 49, 60, 0.05), 0 14px 34px -20px rgba(20, 49, 60, 0.35);
+  --t-shadow: 0 1px 2px rgba(8, 52, 61, 0.05), 0 16px 36px -22px rgba(8, 52, 61, 0.4);
+  --t-sea: linear-gradient(135deg, var(--t-aqua) 0%, var(--t-teal) 55%, #0a8f92 100%);
 }
 
 .trip-root {
-  background: var(--t-paper);
   color: var(--t-ink);
   min-height: 100dvh;
+  background:
+    radial-gradient(900px 460px at 110% -8%, rgba(53, 207, 214, 0.22), transparent 62%),
+    radial-gradient(700px 400px at -10% 4%, rgba(255, 195, 92, 0.2), transparent 58%),
+    linear-gradient(180deg, var(--t-paper) 0%, var(--t-paper) 55%, var(--t-sand) 100%);
 }
 
 .trip-card {
   background: var(--t-surface);
   border: 1px solid var(--t-line);
-  border-radius: 24px;
+  border-radius: 26px;
   box-shadow: var(--t-shadow);
 }
 
 .trip-chip {
   border: 1px solid var(--t-line);
-  background: var(--t-surface);
+  background: rgba(255, 255, 255, 0.9);
   color: var(--t-ink-2);
+  box-shadow: 0 1px 2px rgba(8, 52, 61, 0.04);
   transition:
     background 0.16s ease,
     color 0.16s ease,
@@ -39,29 +47,91 @@
   white-space: nowrap;
 }
 .trip-chip[data-on="true"] {
-  background: var(--t-ink);
-  border-color: var(--t-ink);
+  background: var(--t-sea);
+  border-color: transparent;
   color: #fff;
+  box-shadow: 0 6px 16px -8px rgba(15, 179, 163, 0.8);
 }
 .trip-chip-soft[data-on="true"] {
-  background: var(--t-coral);
-  border-color: var(--t-coral);
+  background: linear-gradient(135deg, #ff9c74, var(--t-coral));
+  box-shadow: 0 6px 16px -8px rgba(255, 122, 89, 0.9);
+}
+
+/* ── כותרת טרופית ── */
+.trip-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--t-sea);
   color: #fff;
+}
+.trip-hero::before {
+  /* שמש — תמיד בפינה הימנית הפיזית, מאחורי הכותרת */
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -52px;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 150, 0.95) 0%,
+    rgba(255, 195, 92, 0.55) 42%,
+    transparent 70%
+  );
+}
+.trip-hero::after {
+  /* ריצוד אור על המים */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px 200px at 20% 120%,
+    rgba(255, 255, 255, 0.22),
+    transparent 70%
+  );
+}
+.trip-hero > * {
+  position: relative;
+  z-index: 1;
+}
+.trip-wave-back {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 6px;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  opacity: 0.35;
+  pointer-events: none;
+}
+.trip-wave {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  z-index: 2;
+  display: block;
+  width: 100%;
+}
+.trip-glass {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(6px);
 }
 
 /* ── Leaflet ── */
 .leaflet-container {
-  background: #dfe8ea;
+  background: #d6ecec;
   font-family: inherit;
   z-index: 0;
 }
 .leaflet-control-attribution {
   background: rgba(255, 255, 255, 0.82) !important;
-  color: #8a9aa0 !important;
+  color: #7fa0a5 !important;
   font-size: 9px !important;
 }
 .leaflet-control-attribution a {
-  color: #6b8189 !important;
+  color: #5f858c !important;
 }
 .leaflet-bar {
   border: none !important;
@@ -86,7 +156,7 @@
   border-radius: 50% 50% 50% 4px;
   transform: rotate(45deg);
   border: 2.5px solid #fff;
-  box-shadow: 0 3px 10px rgba(20, 49, 60, 0.35);
+  box-shadow: 0 3px 10px rgba(8, 52, 61, 0.35);
   font-size: 13px;
   line-height: 1;
   transition:
@@ -101,6 +171,13 @@
   height: 42px;
   font-size: 19px;
   z-index: 500;
+}
+/* מקומות שהמשתמש הוסיף — טבעת מודגשת כדי להבדיל מהתוכן המובנה */
+.trip-pin-mine {
+  border-color: var(--t-ink);
+  box-shadow:
+    0 0 0 2px #fff,
+    0 3px 10px rgba(8, 52, 61, 0.35);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -139,12 +216,4 @@
 }
 .trip-rise {
   animation: trip-rise 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* מקומות שהמשתמש הוסיף — טבעת מודגשת כדי להבדיל מהתוכן המובנה */
-.trip-pin-mine {
-  border-color: var(--t-ink);
-  box-shadow:
-    0 0 0 2px #fff,
-    0 3px 10px rgba(20, 49, 60, 0.35);
 }
