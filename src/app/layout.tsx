@@ -12,12 +12,19 @@ const cormorant = Cormorant_Garamond({
 const heebo = Heebo({
   variable: "--font-sans",
   subsets: ["hebrew", "latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "יוסי & רחל — הזמנה לחתונה",
-  description: "הזמנה דיגיטלית לחתונה",
+  title: "תאילנד 2026",
+  description: "מתכנן המסלול לתאילנד",
+};
+
+export const viewport = {
+  themeColor: "#faf6f0",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover" as const,
 };
 
 export default function RootLayout({
@@ -31,7 +38,7 @@ export default function RootLayout({
       dir="rtl"
       className={`${cormorant.variable} ${heebo.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[var(--cream)] text-[var(--ink)]">
+      <body className="min-h-full">
         {children}
       </body>
     </html>

@@ -1,0 +1,150 @@
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --t-paper: #faf6f0;
+  --t-paper-2: #f2ece3;
+  --t-surface: #ffffff;
+  --t-ink: #14313c;
+  --t-ink-2: #2c4d59;
+  --t-muted: #7c9098;
+  --t-line: #e9e0d5;
+  --t-coral: #ff6a4d;
+  --t-teal: #0e9c8a;
+  --t-violet: #7c5cff;
+  --t-sun: #ffb020;
+  --t-shadow: 0 1px 2px rgba(20, 49, 60, 0.05), 0 14px 34px -20px rgba(20, 49, 60, 0.35);
+}
+
+.trip-root {
+  background: var(--t-paper);
+  color: var(--t-ink);
+  min-height: 100dvh;
+}
+
+.trip-card {
+  background: var(--t-surface);
+  border: 1px solid var(--t-line);
+  border-radius: 24px;
+  box-shadow: var(--t-shadow);
+}
+
+.trip-chip {
+  border: 1px solid var(--t-line);
+  background: var(--t-surface);
+  color: var(--t-ink-2);
+  transition:
+    background 0.16s ease,
+    color 0.16s ease,
+    border-color 0.16s ease;
+  white-space: nowrap;
+}
+.trip-chip[data-on="true"] {
+  background: var(--t-ink);
+  border-color: var(--t-ink);
+  color: #fff;
+}
+.trip-chip-soft[data-on="true"] {
+  background: var(--t-coral);
+  border-color: var(--t-coral);
+  color: #fff;
+}
+
+/* ── Leaflet ── */
+.leaflet-container {
+  background: #dfe8ea;
+  font-family: inherit;
+  z-index: 0;
+}
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: #8a9aa0 !important;
+  font-size: 9px !important;
+}
+.leaflet-control-attribution a {
+  color: #6b8189 !important;
+}
+.leaflet-bar {
+  border: none !important;
+  box-shadow: var(--t-shadow) !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+}
+.leaflet-bar a {
+  background: #fff !important;
+  color: var(--t-ink) !important;
+  border-color: var(--t-line) !important;
+}
+.leaflet-bar a:hover {
+  background: var(--t-paper-2) !important;
+}
+
+.trip-pin {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 4px;
+  transform: rotate(45deg);
+  border: 2.5px solid #fff;
+  box-shadow: 0 3px 10px rgba(20, 49, 60, 0.35);
+  font-size: 13px;
+  line-height: 1;
+  transition:
+    width 0.15s ease,
+    height 0.15s ease;
+}
+.trip-pin > span {
+  transform: rotate(-45deg);
+}
+.trip-pin[data-active="true"] {
+  width: 42px;
+  height: 42px;
+  font-size: 19px;
+  z-index: 500;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* ציר זמן של המסלול */
+.trip-rail::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 27px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--t-line) 6%,
+    var(--t-line) 94%,
+    transparent
+  );
+}
+
+@keyframes trip-rise {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.trip-rise {
+  animation: trip-rise 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* מקומות שהמשתמש הוסיף — טבעת מודגשת כדי להבדיל מהתוכן המובנה */
+.trip-pin-mine {
+  border-color: var(--t-ink);
+  box-shadow:
+    0 0 0 2px #fff,
+    0 3px 10px rgba(20, 49, 60, 0.35);
+}
