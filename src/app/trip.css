@@ -22,10 +22,21 @@
 .trip-root {
   color: var(--t-ink);
   min-height: 100dvh;
+  background: linear-gradient(160deg, #0b6b74 0%, #073f4a 60%, #05303a 100%);
+}
+
+/* האפליקציה עצמה נשארת ברוחב טלפון גם על מסך גדול */
+.trip-shell {
   background:
     radial-gradient(900px 460px at 110% -8%, rgba(53, 207, 214, 0.22), transparent 62%),
     radial-gradient(700px 400px at -10% 4%, rgba(255, 195, 92, 0.2), transparent 58%),
     linear-gradient(180deg, var(--t-paper) 0%, var(--t-paper) 55%, var(--t-sand) 100%);
+}
+
+@media (min-width: 600px) {
+  .trip-shell {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 30px 80px -30px rgba(0, 0, 0, 0.6);
+  }
 }
 
 .trip-card {
@@ -98,10 +109,11 @@
 .trip-wave-back {
   position: absolute;
   inset-inline: 0;
-  bottom: 6px;
+  bottom: 7px;
   z-index: 1;
   display: block;
   width: 100%;
+  height: 20px;
   opacity: 0.35;
   pointer-events: none;
 }
@@ -112,6 +124,7 @@
   z-index: 2;
   display: block;
   width: 100%;
+  height: 24px;
 }
 .trip-glass {
   background: rgba(255, 255, 255, 0.18);
